@@ -1,0 +1,12 @@
+Repositories are created in
+  /data/nightly/svn
+using
+  svn co <url> <path> --ignore-externals
+
+<path> uses . as a separator for subpackages: pywikipedia.spelling is a subpackage of pywikipedia. This currently works for only one level.
+
+The current repositories are:
+pywikipedia	 http://svn.wikimedia.org/svnroot/pywikipedia/trunk/pywikipedia
+pywikipedia.spelling	http://svn.wikimedia.org/svnroot/pywikipedia/trunk/spelling
+pywikipedia-rewrite	 http://svn.wikimedia.org/svnroot/pywikipedia/branches/rewrite
+ 
