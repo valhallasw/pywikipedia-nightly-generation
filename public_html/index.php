@@ -66,7 +66,7 @@
        </a>
       </div>
       <p class="footer">
-        Latest pywikipedia nightly was generated at: <? echo $gendate; ?><br/>Web site revision: <? include("../.git/latest"); ?>
+        Latest pywikipedia nightly was generated at: <? echo $gendate; ?><br/>Web site revision: <? include("../.git/latest"); ?>. <a href="pywikipedia-nightly.git">Git repository</a>
       </p>
     </div>
   </div>
