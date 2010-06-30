@@ -3,7 +3,12 @@ Repositories are created in
 using
   svn co <url> <path> --ignore-externals
 
-<path> uses . as a separator for subpackages: pywikipedia.spelling is a subpackage of pywikipedia. This currently works for only one level.
+<path> uses . as a separator for subpackages: pywikipedia.spelling is a subpackage of pywikipedia. This currently works for only one level. (this actually has not been coded yet)
+
+The packages are generated nightly using a crontab entry:
+# m h  dom mon dow   command
+  0 20 *   *   *     /bin/bash $HOME/src/nightly/nightly.sh
+
 
 The current repositories are:
 pywikipedia	 http://svn.wikimedia.org/svnroot/pywikipedia/trunk/pywikipedia
