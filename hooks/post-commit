@@ -1,3 +1,4 @@
 #!/bin/sh
 unset GIT_DIR
 git log -1 --format="%h (%s) by %aN, %ad" > .git/latest
+git update-server-info
