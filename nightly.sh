@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Script to create nightly versions for pywikipediabot
 # See README for more information
@@ -34,19 +34,21 @@ do
 
   # create packages
   cd ..
+  rm $PACKAGE_DIR/$i/$i-nightly.*
+  CMD=( "zip -r $PACKAGE_DIR/$i/$i-nightly.zip $i/"
+        "tar -cvjf $PACKAGE_DIR/$i/$i-nightly.tar.bz2 --exclude=\".svn*\" $i"
+	"tar -cvzf $PACKAGE_DIR/$i/$i-nightly.tgz --exclude=\".svn*\" $i"
+        "7z a -xr!.svn $PACKAGE_DIR/$i/$i-nightly.7z $i"
+      )
+  LOG=( "zip.log" "tar.bz2.log" "tgz.log" "7z.log" )
 
-  date > $LOG_DIR/$i/zip.log
-  zip -r $PACKAGE_DIR/$i/$i-nightly.zip $i/ >> $LOG_DIR/$i/zip.log
-
-  date > $LOG_DIR/$i/tar.bz2.log
-  tar -cvjf $PACKAGE_DIR/$i/$i-nightly.tar.bz2 --exclude=".svn*" $i >> $LOG_DIR/$i/tar.bz2.log
-
-  date > $LOG_DIR/$i/tgz.log
-  tar -cvzf $PACKAGE_DIR/$i/$i-nightly.tgz --exclude=".svn*" $i >> $LOG_DIR/$i/tgz
-
-  date > $LOG_DIR/$i/7z.log
-  7z a -xr\!.svn $PACKAGE_DIR/$i/$i-nightly.7z $i >> $LOG_DIR/$i/7z.log
-
+  for ((n=0; n<${#CMD[@]};n++)); do
+    C="${CMD[$n]}"
+    L="$LOG_DIR/$i/${LOG[$n]}"
+    date > $L
+    echo `pwd`$ $C >> $L
+    $C >> $L
+  done
   # copy README files
   touch $i/README
   cp $i/README $PACKAGE_DIR/$i
