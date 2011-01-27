@@ -36,8 +36,8 @@ do
   cd ..
   rm $PACKAGE_DIR/$i/$i-nightly.*
   CMD=( "zip -r $PACKAGE_DIR/$i/$i-nightly.zip $i/"
-        "tar -cvjf $PACKAGE_DIR/$i/$i-nightly.tar.bz2 --exclude=\".svn*\" $i"
-	"tar -cvzf $PACKAGE_DIR/$i/$i-nightly.tgz --exclude=\".svn*\" $i"
+        "tar -cvjf $PACKAGE_DIR/$i/$i-nightly.tar.bz2 --exclude=.svn* $i"
+	"tar -cvzf $PACKAGE_DIR/$i/$i-nightly.tgz --exclude=.svn* $i"
         "7z a -xr!.svn $PACKAGE_DIR/$i/$i-nightly.7z $i"
       )
   LOG=( "zip.log" "tar.bz2.log" "tgz.log" "7z.log" )
@@ -49,6 +49,8 @@ do
     echo `pwd`$ $C >> $L
     $C >> $L
   done
+  chmod +r $PACKAGE_DIR/$i/$i-nightly.*
+
   # copy README files
   touch $i/README
   cp $i/README $PACKAGE_DIR/$i
