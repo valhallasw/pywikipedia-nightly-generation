@@ -30,6 +30,12 @@ do
   
   # update the SVN checkout
   svn up --ignore-externals > $LOG_DIR/$i/svn.log
+  if [ -e ".externals" ]; then
+	  cat .externals | while read external; do
+	    echo "Updating $external" >> $LOG_DIR/$i/svn.log
+	    svn up --ignore-externals $external >> $LOG_DIR/$i/svn.log
+	  done
+  fi
   svn log --limit 1 | grep -v -e '-\{72\}' > $LOG_DIR/$i/latest.log
 
   # create packages
