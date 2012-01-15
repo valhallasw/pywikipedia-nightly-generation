@@ -1,21 +1,26 @@
-Repositories are created in
-  /data/nightly/svn
-using
-  svn co <url> <path> --ignore-externals
+From: Merlijn 'valhallasw' van Deen <valhallasw@gmail.com>
+Date: Wed, 30 Jun 2010 09:13:00 +0200
 
-Externals can be included by including a .externals file in the root directory of the svn checkout, which should have one directory per line. These will be included using
-  svn update <directory> --ignore-externals
-so it will *not* fetch externals recursively. Any 'recursive' externals should be included with their full path from the *original* svn root checkout.
+Welcome to the Pywikipedia project on the Wikimedia Toolserver.
 
-<path> uses . as a separator for subpackages: pywikipedia.spelling is a subpackage of pywikipedia. This currently works for only one level. (this actually has not been coded yet)
+This multi-maintainer project has been set-up to keep pywikipedia nightlies available to the public.
 
-The packages are generated nightly using a crontab entry:
-# m h  dom mon dow   command
-  0 20 *   *   *     /bin/bash $HOME/src/nightly/nightly.sh
+Housekeeping notes:
+  * Keep all human-created files under <project>/src/
+  * Keep all human-created files under source control (git, for nightly)
+  * Keep all generated files under data/<project>
+    - this includes, but is not limited to, svn checkouts and packaged nightlies
 
+  * Please save instructions on how to initialize and configure in a README file
+    per <project> folder
+  
+  * Use symlinks to create the public_html structure
 
-The current repositories are:
-pywikipedia	 http://svn.wikimedia.org/svnroot/pywikipedia/trunk/pywikipedia
-pywikipedia.spelling	http://svn.wikimedia.org/svnroot/pywikipedia/trunk/spelling
-pywikipedia-rewrite	 http://svn.wikimedia.org/svnroot/pywikipedia/branches/rewrite
- 
+From: Merlijn 'valhallasw' van Deen <valhallasw@gmail.com>
+Date: Sun, 15 Jan 2012 00:59:00 +0100
+
+An automated testing system was added to run after creating the nightly.
+This testing system uses a python virtualenv to install the nose testing framework, located in
+$HOME/src/nightly/tests.
+
+Note: the crontab runs on willow, not on nightshade! (and using crontab, not cronie)

@@ -1,0 +1,21 @@
+Repositories are created in
+  /data/nightly/svn
+using
+  svn co <url> <path> --ignore-externals
+
+Externals can be included by including a .externals file in the root directory of the svn checkout, which should have one directory per line. These will be included using
+  svn update <directory> --ignore-externals
+so it will *not* fetch externals recursively. Any 'recursive' externals should be included with their full path from the *original* svn root checkout.
+
+<path> uses . as a separator for subpackages: pywikipedia.spelling is a subpackage of pywikipedia. This currently works for only one level. (this actually has not been coded yet)
+
+The packages are generated nightly using a crontab entry:
+# m h  dom mon dow   command
+  0 20 *   *   *     /bin/bash $HOME/src/nightly/nightly.sh
+
+
+The current repositories are:
+pywikipedia	 http://svn.wikimedia.org/svnroot/pywikipedia/trunk/pywikipedia
+pywikipedia.spelling	http://svn.wikimedia.org/svnroot/pywikipedia/trunk/spelling
+pywikipedia-rewrite	 http://svn.wikimedia.org/svnroot/pywikipedia/branches/rewrite
+ 

@@ -19,6 +19,7 @@
       while (!feof($file)) {
         print '<h3>'.$package.' [<a href="package/'.$package.'/'.$package.'-nightly.tar.bz2">download</a>]</h3>';
 	include('package/'.$package.'/README');
+	include('package/'.$package.'/README_TS');
 	print '<div style="margin-left: 3em; margin-right: 20%;">';
 	print '<h4>Last incorporated revision</h4>';
         print '<pre>';

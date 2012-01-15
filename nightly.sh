@@ -61,3 +61,5 @@ do
   touch $i/README
   cp $i/README $PACKAGE_DIR/$i
 done
+
+tests.sh
